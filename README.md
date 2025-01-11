@@ -14,7 +14,7 @@
 </div>
 
 ## ⚛️ Muon
-Muon is a simple memory store library implementation designed with ease of use in mind
+Muon is a simple memory store library implementation designed with ease of use in mind. It features exponential backoff for every operation in Hash Maps, Queues, and Sorted Maps
 
 ## 📦 Installation
 To install Muon, use npm:
