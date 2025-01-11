@@ -13,7 +13,7 @@
 
 </div>
 
-## 🧬 Muon
+## ⚛️ Muon
 Muon is a simple memory store library implementation designed with ease of use in mind
 
 ## 📦 Installation
