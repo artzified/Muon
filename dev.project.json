@@ -1,0 +1,14 @@
+{
+	"name": "muon",
+	"tree": {
+		"$className": "DataModel",
+		"ServerScriptService": {
+			"Muon": {
+				"$path": "out"
+			},
+			"test": {
+				"$path": "test"
+			}
+		}
+	}
+}
