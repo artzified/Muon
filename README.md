@@ -1,6 +1,6 @@
 <h1 align="center">
-	<a href="https://www.npmjs.com/package/@rbxts/reflex">
-		<img src="public/logo.png" alt="Muon" width="200" />
+	<a href="https://www.npmjs.com/package/@rbxts/muon">
+		<img src="public/logo.svg" alt="Muon" width="200" />
 	</a>
 	<br />
 	<b>Muon</b>
