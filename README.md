@@ -1,5 +1,14 @@
+<h1 align="center">
+	<a href="https://www.npmjs.com/package/@rbxts/reflex">
+		<img src="public/logo.png" alt="Muon" width="200" />
+	</a>
+	<br />
+	<b>Muon</b>
+</h1>
+
 <div align="center">
 
+[![npm version](https://img.shields.io/npm/v/@rbxts/muon.svg?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@rbxts/muon)
 [![GitHub license](https://img.shields.io/github/license/artzified/muon?style=for-the-badge)](LICENSE.md)
 
 </div>
