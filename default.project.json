@@ -1,6 +1,6 @@
 {
 	"name": "muon",
 	"tree": {
-		"$path": "src"
+		"$path": "out"
 	}
 }
