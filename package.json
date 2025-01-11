@@ -14,7 +14,10 @@
   ],
   "author": "artzified",
   "license": "MIT",
-  "repository": "https://github.com/artzified/Muon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artzified/Muon.git"
+  },
   "description": "A memory store library",
   "types": "out/index.d.ts",
   "files": [
