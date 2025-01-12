@@ -17,7 +17,10 @@ export class Queue {
 		priority: number, 
 		overrideOptions?: BaseOptions
 	): Promise<void> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.queue.AddAsync(value, options.lifetime, priority),
@@ -30,7 +33,10 @@ export class Queue {
 		maxTime?: number, 
 		overrideOptions?: BaseOptions
 	): Promise<LuaTuple<[items: T[], id: string]>> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.queue.ReadAsync(count, acceptPartial, maxTime) as LuaTuple<[T[], string]>,
@@ -41,7 +47,10 @@ export class Queue {
 		id: string, 
 		overrideOptions?: BaseOptions
 	): Promise<void> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.queue.RemoveAsync(id),
@@ -52,7 +61,10 @@ export class Queue {
 		value: T, 
 		overrideOptions?: BaseOptions
 	): Promise<void> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return await this.insert(value, 0, options);
 	}
@@ -62,7 +74,10 @@ export class Queue {
 		maxTime?: number, 
 		overrideOptions?: BaseOptions
 	): Promise<T[]> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		const [items, ids] = await this.readBulk(count, false, maxTime, options);
 
@@ -77,7 +92,10 @@ export class Queue {
 		maxTime?: number, 
 		overrideOptions?: BaseOptions
 	): Promise<T> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return (await this.dequeueBulk(1, maxTime, options))[0] as T;
 	}

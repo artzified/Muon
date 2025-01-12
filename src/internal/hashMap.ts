@@ -17,7 +17,10 @@ export class HashMap {
 		value: T, 
 		overrideOptions?: BaseOptions
 	): Promise<boolean> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.hashMap.SetAsync(key, value, options.lifetime),
@@ -29,7 +32,10 @@ export class HashMap {
 		updateFunction: (oldValue: T) => T & any,
 		overrideOptions?: BaseOptions,
 	): Promise<T & any> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.hashMap.UpdateAsync(key, updateFunction, options.lifetime),
@@ -40,7 +46,10 @@ export class HashMap {
 		key: string, 
 		overrideOptions?: BaseOptions
 	): Promise<T> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(
 			options.exponentialBackoff.base,
@@ -53,7 +62,10 @@ export class HashMap {
 		count: number, 
 		overrideOptions?: BaseOptions
 	): Promise<MemoryStoreHashMapPages> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.hashMap.ListItemsAsync(count),
@@ -64,7 +76,10 @@ export class HashMap {
 		key: string, 
 		overrideOptions?: BaseOptions
 	): Promise<void> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.hashMap.RemoveAsync(key),
@@ -76,11 +91,14 @@ export class HashMap {
 		newLifetime: number, 
 		overrideOptions?: Omit<BaseOptions, 'lifetime'>
 	): Promise<void> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 		  
 		await this.update(key, (oldValue) => oldValue, {
+			...options,
 			lifetime: newLifetime,
-			...options
 		})
 	}
 

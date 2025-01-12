@@ -16,7 +16,10 @@ export class SortedMap {
 		key: string, 
 		overrideOptions?: BaseOptions
 	): Promise<LuaTuple<[value: T, sortKey: string | number]>> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () => 
 			this.sortedMap.GetAsync(key) as LuaTuple<[T, string | number]>
@@ -30,7 +33,10 @@ export class SortedMap {
 		exclusiveUpperBound: {key: string, sortKey: string | number},
 		overrideOptions?: BaseOptions
 	): Promise<{key: string, value: T, sortKey?: string | number}[]> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.sortedMap.GetRangeAsync(direction, count, exclusiveLowerBound, exclusiveUpperBound) as {key: string, value: T, sortKey?: string | number}[]
@@ -43,7 +49,10 @@ export class SortedMap {
 		sortKey?: string | number,
 		overrideOptions?: BaseOptions
 	): Promise<boolean> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.sortedMap.SetAsync(key, value, options.lifetime, sortKey)
@@ -55,7 +64,10 @@ export class SortedMap {
 		transformFunction: (value: unknown, sortKey?: string | number) => T & any,
 		overrideOptions?: BaseOptions
 	): Promise<[lastValue?: T & any, lastSortKey?: string | number]> {
-		const options = overrideOptions ?? this.options;
+		const options = {
+			...this.options,
+			...overrideOptions
+		};
 
 		return exponentialBackoff(options.exponentialBackoff.base, options.exponentialBackoff.maxTries, () =>
 			this.sortedMap.UpdateAsync(key, transformFunction, options.lifetime),
