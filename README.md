@@ -22,7 +22,7 @@ To install Muon, use npm:
 npm install @rbxts/muon
 ```
 
-# 🧪 Usage
+## 🧪 Usage
 ```ts
 import { Muon } from '@rbxts/muon';
 
