@@ -22,6 +22,26 @@ To install Muon, use npm:
 npm install @rbxts/muon
 ```
 
+# 🧪 Usage
+```ts
+import { Muon } from '@rbxts/muon';
+
+const hashMap = Muon.hashMap('myHashMap', {
+	lifetime: 60, // data only exists for 60 seconds
+	exponentialBackoff = {
+		base: 1.5; // if something fails, it will retry for 1.5 (1.5^1), then 2.25 (1.5^2), ..., and so on till maxTries has been reached
+		maxTries: 5; // a maximum of 5 tries before it gives an error
+	}
+});
+
+(async() => {
+	await hashMap.set('count', 1);
+	await hashMap.update('count', (oldCount) => ++oldCount); // increments the count. has a side effect of resetting the lifetime of the count
+
+	print(await hashMap.get<number>('count'));
+})();
+```
+
 ## 🤝 Contributing
 Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/artzified/Muon).
 
