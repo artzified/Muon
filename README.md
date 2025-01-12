@@ -42,6 +42,12 @@ const hashMap = Muon.hashMap('myHashMap', {
 })();
 ```
 
+Any operation method has an `overrideOptions` parameter, which allows you to specify what options should be used for the operation
+```ts
+// ...
+await hashMap.set('count', 1, { lifetime: 120 }); // use a lifetime of 120 seconds
+```
+
 ## 🤝 Contributing
 Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/artzified/Muon).
 
